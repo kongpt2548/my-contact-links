@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รวมช่องทางติดต่อ | Contact Links</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Base Setup --- */
+        body { 
+            font-family: 'Kanit', sans-serif; 
+            /* พื้นหลังสีเข้มแบบมีมิติ (Modern Dark Mode) */
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            background-attachment: fixed;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
+            box-sizing: border-box; 
+            color: #f8fafc;
+        }
+
+        /* --- Glassmorphism Card --- */
+        .card { 
+            position: relative; 
+            /* เอฟเฟกต์กระจกใส */
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 30px; 
+            border-radius: 28px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); 
+            width: 100%; 
+            max-width: 340px; 
+            text-align: center; 
+            overflow: hidden;
+        }
+
+        /* เอฟเฟกต์แสงสะท้อนเบาๆ บนการ์ด */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-20deg);
+            animation: shine 6s infinite;
+        }
+        @keyframes shine {
+            100% { left: 200%; }
+        }
+
+        /* --- Profile --- */
+        .profile-img { 
+            width: 110px; 
+            height: 110px; 
+            border-radius: 50%; 
+            margin-bottom: 15px; 
+            object-fit: cover; 
+            border: 3px solid rgba(255, 255, 255, 0.2); 
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        h2 { 
+            margin: 5px 0; 
+            font-size: 1.5em; 
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        p { 
+            margin: 0 0 25px; 
+            color: #cbd5e1; 
+            font-size: 0.9rem; 
+            font-weight: 300;
+        }
+        
+        /* --- Neon Glow Buttons --- */
+        .btn { 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%; 
+            color: #f1f5f9; 
+            text-decoration: none; 
+            padding: 14px 0; 
+            margin-bottom: 12px; 
+            border-radius: 14px; 
+            font-weight: 500; 
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            box-sizing: border-box; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover { 
+            transform: translateY(-4px); 
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* 
+           💡 วิธีแก้สีปุ่มเวลาเอาเมาส์ไปจ่อ (Hover)
+           1. ถ้าอยากแก้สีของปุ่มที่มีอยู่แล้ว ให้เปลี่ยนโค้ดสีตรง 'background' และ 'box-shadow' ได้เลย
+           2. ถ้าต้องการสร้างสีให้ปุ่มแบรนด์ใหม่ (เช่น youtube) ให้ตั้งชื่อคลาสแล้วพิมพ์ต่อท้ายไปได้เลยแบบนี้:
+              .btn.youtube:hover { background: #FF0000; box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4); }
+        */
+        .btn.facebook:hover { background: #1877f2; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4); }
+        .btn.instagram:hover { 
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.4); 
+        }
+        .btn.line:hover { background: #06c755; box-shadow: 0 8px 20px rgba(6, 199, 85, 0.4); }
+        .btn.whatsapp:hover { background: #25D366; box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4); }
+        .btn.shopee:hover { background: #EE4D2D; box-shadow: 0 8px 20px rgba(238, 77, 45, 0.4); }
+        .btn.tiktok:hover { 
+            background: #000000; 
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2), -3px 0 10px rgba(0, 242, 254, 0.4), 3px 0 10px rgba(254, 24, 151, 0.4); 
+        }
+        .btn.wechat:hover { background: #07C160; box-shadow: 0 8px 20px rgba(7, 193, 96, 0.4); }
+        /* เพิ่มสีของปุ่มโทรศัพท์ (สีฟ้าคลีนๆ) */
+        .btn.phone:hover { background: #3b82f6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+
+        /* --- Divider --- */
+        .divider { 
+            margin: 30px 0 20px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.1); 
+            position: relative; 
+            display: flex;
+            justify-content: center;
+        }
+        .divider span { 
+            background: #141b31; 
+            padding: 0 15px; 
+            color: #94a3b8; 
+            font-size: 0.85em; 
+            position: absolute; 
+            top: -10px; 
+            border-radius: 20px;
+            font-weight: 300; 
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* --- Shop Group --- */
+        .shop-group { display: flex; gap: 12px; }
+        .shop-group .btn { margin-bottom: 0; font-size: 0.95em; padding: 12px 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- ลบปุ่ม .back-btn ออกแล้วตามรีเควส -->
+
+        <img src="/profile.jpg" alt="Profile" class="profile-img">
+        
+        <h2>ช่องทางติดต่อ</h2>
+        <p>กดเลือกลิงก์ด้านล่างเพื่อทักแชทได้เลยครับ 👇</p>
+
+        <!-- 
+            💡 วิธีเพิ่ม/แก้ไขปุ่มแถวติดต่อ:
+            1. เอาลิงก์ของคุณมาใส่แทนในส่วน href="..."
+            2. ถ้าอยากเปลี่ยนไอคอน ให้เปลี่ยนตรง <i class="..."></i> (เข้าไปดูโค้ดไอคอนได้ที่เว็บ fontawesome.com)
+            3. หากจะเพิ่มปุ่มใหม่ ให้ Copy บรรทัด <a href...> จนถึง </a> ไปวางต่อท้ายได้เลย
+            4. อย่าลืมเปลี่ยนชื่อคลาสตรง ".btn facebook" เป็น ".btn ชื่อปุ่มใหม่" เพื่อให้มันไปดึงสี Hover จาก CSS ด้านบนมาใช้
+        -->
+        <a href="https://facebook.com/chitsanucha.nuthim" target="_blank" class="btn facebook">
+            <i class="fa-brands fa-facebook"></i> Facebook
+        </a>
+        <a href="https://instagram.com/chit_onyx" target="_blank" class="btn instagram">
+            <i class="fa-brands fa-instagram"></i> Instagram
+        </a>
+        <a href="https://line.me/ti/p/~@Kongpt2548" target="_blank" class="btn line">
+            <i class="fa-brands fa-line"></i> Line @Kongpt2548
+        </a>
+        <a href="https://wa.me/66980573163" target="_blank" class="btn whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://tiktok.com/@k_csnc" target="_blank" class="btn tiktok">
+            <i class="fa-brands fa-tiktok"></i> TikTok
+        </a>
+        <a href="ใส่ลิงก์WeChatของคุณที่นี่" target="_blank" class="btn wechat">
+            <i class="fa-brands fa-weixin"></i> WeChat
+        </a>
+        <a href="tel:0980573163" class="btn phone">
+            <i class="fa-solid fa-phone"></i> โทร: 098-057-3163
+        </a>
+
+        <div class="divider">
+            <span>🛒 ร้านค้าออนไลน์</span>
+        </div>
+
+        <!-- 
+            💡 วิธีเพิ่ม/แก้ไขปุ่มฝั่งร้านค้า:
+            ทำเหมือนกับด้านบนเลยครับ แค่เอาแท็ก <a> มาวางไว้ด้านใน <div class="shop-group"> 
+            ระบบจะทำการแบ่งครึ่งและจัดเรียงให้อยู่ในแถวเดียวกันโดยอัตโนมัติ
+        -->
+        <div class="shop-group">
+            <a href="https://collshp.com/chit_onyx?view=storefront" target="_blank" class="btn shopee">
+                <i class="fa-solid fa-bag-shopping"></i> Shopee
+            </a>
+            <a href="https://tiktok.com/@k_csnc" target="_blank" class="btn tiktok">
+                <i class="fa-brands fa-tiktok"></i> TikTok Shop
+            </a>
+        </div>
+
+    </div>
+
+</body>
+</html>
