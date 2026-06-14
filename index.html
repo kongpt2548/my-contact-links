@@ -142,6 +142,34 @@
         .btn.wechat:hover { background: #07C160; box-shadow: 0 8px 20px rgba(7, 193, 96, 0.4); }
         /* เพิ่มสีของปุ่มโทรศัพท์ (สีฟ้าคลีนๆ) */
         .btn.phone:hover { background: #3b82f6; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); }
+        .btn.telegram:hover { background: #24A1DE; box-shadow: 0 8px 20px rgba(36, 161, 222, 0.4); }
+
+        /* --- Grid 2 Columns (จัดปุ่มคู่กันลดความรก) --- */
+        .grid-2 { display: flex; gap: 12px; }
+        .grid-2 .btn { margin-bottom: 12px; font-size: 0.9em; padding: 12px 5px; }
+
+        /* --- Modal Popup (เด้งกลางจอ) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px; border-radius: 24px; box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            width: 85%; max-width: 320px; text-align: center; position: relative;
+            transform: translateY(30px) scale(0.95); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        
+        .close-btn {
+            position: absolute; top: 15px; right: 15px; background: transparent; border: none;
+            color: #94a3b8; font-size: 1.2rem; cursor: pointer; transition: 0.2s;
+        }
+        .close-btn:hover { color: #fff; transform: scale(1.1); }
 
         /* --- Divider --- */
         .divider { 
@@ -195,18 +223,27 @@
         <a href="https://line.me/ti/p/~@Kongpt2548" target="_blank" class="btn line">
             <i class="fa-brands fa-line"></i> Line @Kongpt2548
         </a>
-        <a href="https://wa.me/66980573163" target="_blank" class="btn whatsapp">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="https://tiktok.com/@k_csnc" target="_blank" class="btn tiktok">
-            <i class="fa-brands fa-tiktok"></i> TikTok
-        </a>
-        <a href="ใส่ลิงก์WeChatของคุณที่นี่" target="_blank" class="btn wechat">
-            <i class="fa-brands fa-weixin"></i> WeChat
-        </a>
-        <a href="tel:0980573163" class="btn phone">
-            <i class="fa-solid fa-phone"></i> โทร: 098-057-3163
-        </a>
+        <div class="grid-2">
+            <a href="https://wa.me/66980573163" target="_blank" class="btn whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://t.me/ใส่ยูสเซอร์เนม" target="_blank" class="btn telegram">
+                <i class="fa-brands fa-telegram"></i> Telegram
+            </a>
+        </div>
+        
+        <div class="grid-2">
+            <a href="ใส่ลิงก์WeChatของคุณที่นี่" target="_blank" class="btn wechat">
+                <i class="fa-brands fa-weixin"></i> WeChat
+            </a>
+            <a href="https://tiktok.com/@k_csnc" target="_blank" class="btn tiktok">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+        </div>
+
+        <button onclick="openModal()" class="btn phone" style="cursor: pointer; font-family: inherit;">
+            <i class="fa-solid fa-phone"></i> เบอร์โทรศัพท์ติดต่อ
+        </button>
 
         <div class="divider">
             <span>🛒 ร้านค้าออนไลน์</span>
@@ -227,6 +264,39 @@
         </div>
 
     </div>
+
+    <div id="phoneModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal(event)"><i class="fa-solid fa-xmark"></i></button>
+            
+            <h3 style="margin: 0 0 20px; color: #fff; font-weight: 500; font-size: 1.2rem;">เลือกเบอร์ติดต่อ</h3>
+            
+            <a href="tel:0980573163" class="btn phone">
+                <i class="fa-solid fa-phone"></i> 098-057-3163 (เบอร์หลัก)
+            </a>
+            <a href="tel:088xxxxxxx" class="btn phone" style="margin-bottom: 0;">
+                <i class="fa-solid fa-phone"></i> 088-xxx-xxxx (สำรอง)
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('phoneModal');
+            modal.style.display = 'flex';
+            // หน่วงเวลาเล็กน้อยเพื่อให้ CSS Transition ทำงาน
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function closeModal(e) {
+            const modal = document.getElementById('phoneModal');
+            // ปิดเมื่อคลิกปุ่มกากบาท หรือคลิกที่พื้นที่เบลอด้านนอก
+            if (!e || e.target === modal || e.target.closest('.close-btn')) {
+                modal.classList.remove('active');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        }
+    </script>
 
 </body>
 </html>
