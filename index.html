@@ -290,7 +290,7 @@
 
         function closeModal(e) {
             const modal = document.getElementById('phoneModal');
-            // ปิดเมื่อคลิกปุ่มกากบาท หรือคลิกที่พื้นที่เบลอด้านนอก fnjnjnjjnj
+            // ปิดเมื่อคลิกปุ่มกากบาท หรือคลิกที่พื้นที่เบลอด้านนอก
             if (!e || e.target === modal || e.target.closest('.close-btn')) {
                 modal.classList.remove('active');
                 setTimeout(() => modal.style.display = 'none', 300);
